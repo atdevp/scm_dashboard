@@ -1,6 +1,6 @@
 <template>
     <div>
-        ProjectAdd
+        ProjectList
     </div>
 </template>
 
