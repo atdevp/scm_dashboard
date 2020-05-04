@@ -22,7 +22,7 @@
       </el-row>
 
       <!-- 表格 -->
-      <el-table :data="userlist" border stripe style="width: 100%">
+      <el-table :data="resUserInfo.userlist" border stripe style="width: 100%">
         <el-table-column type="index" width="50"></el-table-column>
         <el-table-column
           prop="username"
@@ -74,6 +74,17 @@
           </template>
         </el-table-column>
       </el-table>
+
+      <!-- 分页 -->
+      <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="queryUserInfo.pagenum"
+      :page-sizes="[1, 2, 5, 10]"
+      :page-size="queryUserInfo.pagesize"
+      :layout="resUserInfo.layout"
+      :total="resUserInfo.total">
+    </el-pagination>
     </el-card>
   </div>
 </template>
@@ -84,11 +95,17 @@ export default {
     return {
       //   定义获取用户列表的参数对象
       queryUserInfo: {
-        query: '',
+        search: '',
+        // 也代表了当前页，可以在分页功能中使用
         pagenum: 1,
-        pagesize: 2
+        // 也代表当前每页显示多少条数据，可以在分页功能中使用
+        pagesize: 1
       },
-      userlist: []
+      resUserInfo: {
+        userlist: [],
+        total: 0,
+        layout: 'total, sizes, prev, pager, next, jumper'
+      }
     }
   },
   created () {
@@ -103,8 +120,21 @@ export default {
       if (res.code !== 200) {
         return this.$message.error(res.msg)
       }
-      this.userlist = res.data
+      this.resUserInfo.userlist = res.data.result
+      this.resUserInfo.total = res.data.count
+    },
+
+    // 监听pagesize改变事件
+    handleSizeChange (newSize) {
+      this.queryUserInfo.pagesize = newSize
+      this.getUserList()
+    },
+    // 监听pagenum改变事件
+    handleCurrentChange (newPage) {
+      this.queryUserInfo.pagenum = newPage
+      this.getUserList()
     }
+
   }
 }
 </script>

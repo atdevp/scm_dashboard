@@ -7,8 +7,11 @@ import ElementUI, { Message } from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import './assets/css/global.css'
+import moment from 'vue-moment'
 
 Vue.use(ElementUI)
+Vue.use(moment)
+
 axios.defaults.baseURL = 'http://127.0.0.1:8000/api/v1'
 // 除了登录接口之外都需要在请求头中添加Authorization字段提供token令牌
 // 使用axios添加拦截器
