@@ -6,7 +6,6 @@ import Welcome from '@/components/Welcome'
 import UserList from '@/components/users/UserList'
 import ProjectList from '@/components/projects/ProjectList'
 import AppList from '@/components/applications/AppList'
-import AppAdd from '@/components/applications/AppAdd'
 import Compile from '@/components/cicd/Compile'
 import Deploy from '@/components/cicd/Deploy'
 import Rollback from '@/components/cicd/Rollback'
@@ -24,7 +23,6 @@ export default new Router({
         { path: '/users/list', component: UserList },
         { path: '/projects/list', component: ProjectList },
         { path: '/apps/list', component: AppList },
-        { path: '/apps/add', component: AppAdd },
         { path: '/cicd/compile', component: Compile },
         { path: '/cicd/deploy', component: Deploy },
         { path: '/cicd/rollback', component: Rollback }
