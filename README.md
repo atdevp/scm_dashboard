@@ -21,5 +21,11 @@ npm run build --report
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 ### Example
-![demo1](demo/demo1.png)
-![dem2](demo/demo2.png)
+![demo1](demo/addProject.png)
+![demo2](demo/addApp.png)
+![demo2](demo/compileJava.png)
+
+### TodoList
+* compile
+* deploy
+* update app and project
