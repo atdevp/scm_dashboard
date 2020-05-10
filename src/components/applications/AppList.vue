@@ -60,19 +60,21 @@
 
       <!-- 添加app -->
       <el-dialog title="添加应用" :visible.sync="dialogVisible" width="60%">
-        <el-form ref="ruleForm" label-width="100px">
+        <el-form label-width="100px">
           <el-form-item label="项目" prop="project">
             <el-row>
               <el-col :span="16">
                 <el-select
                   v-model="addAppForm.project"
                   filterable
+                  clearable
                   remote
                   reserve-keyword
                   placeholder="请输入关键词"
                   :loading="loading"
                   :remote-method="remoteQueryProjectMethod"
                   @change="getProjectModules"
+                  size="small"
                 >
                   <el-option
                     v-for="item in projectlist"
@@ -113,7 +115,7 @@
             <el-row>
               <el-col>
                 <el-input
-                  size="large"
+                  size="small"
                   placeholder="运行主类"
                   clearable
                   v-model="addAppForm.main_class"
@@ -126,7 +128,7 @@
             <el-row>
               <el-col>
                 <el-input
-                  size="large"
+                  size="small"
                   placeholder="主类参数"
                   clearable
                   v-model="addAppForm.main_args"
@@ -139,7 +141,7 @@
             <el-row>
               <el-col>
                 <el-input
-                  size="large"
+                  size="small"
                   placeholder="jvm参数"
                   clearable
                   v-model="addAppForm.jvm_args"
@@ -148,8 +150,8 @@
             </el-row>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="onSubmit">立即创建</el-button>
-            <el-button @click="dialogVisible = false">取消</el-button>
+            <el-button type="primary" @click="onSubmit" size="small">立即创建</el-button>
+            <el-button @click="dialogVisible = false" size="small">取消</el-button>
           </el-form-item>
         </el-form>
       </el-dialog>
@@ -197,8 +199,9 @@ export default {
         this.projectlist = []
       } else {
         setTimeout(() => {
-          this.loading = false
+          this.loading = true
           this.projectlist = this.getProjectList(query)
+          this.loading = false
         }, 200)
       }
     },

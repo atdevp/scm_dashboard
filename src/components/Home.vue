@@ -10,7 +10,7 @@
         />
         <span>构建发布系统</span>
       </div>
-      <el-button type="info" @click="logout">退出</el-button>
+      <el-button type="info" @click="logout" size="mini">退出</el-button>
     </el-header>
     <el-container>
       <!-- 左侧 -->
