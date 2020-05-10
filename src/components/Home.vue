@@ -18,8 +18,9 @@
         <!-- 侧边栏菜单 -->
         <div class="toggle-button"><i class="el-icon-s-fold" @click="toggleCollapse"></i></div>
         <el-menu
-          background-color="#2F323A"
-          text-color="#fff"
+          background-color="#232533"
+          text-color="#bdc5cc"
+          font-size=12px
           active-text-color="#ffd04b"
           unique-opened
           :collapse="isCollapse"
@@ -99,13 +100,13 @@ export default {
 }
 
 .el-header {
-  background-color: #2f323a;
+  background-color: #232533;
   display: flex;
   justify-content: space-between;
   padding-left: 0;
   align-items: center;
-  color: #fff;
-  font-size: 20px;
+  color: #bdc5cc;
+  font-size: 16px;
   > div {
     display: flex;
     align-items: center;
@@ -116,10 +117,14 @@ export default {
 }
 
 .el-aside {
-  background-color: #2f323a;
+  background-color: #232533;
   .el-menu{
     border-right: none;
   }
+}
+
+.el-submenu__title {
+  font-size: 10px;
 }
 
 .el-main {

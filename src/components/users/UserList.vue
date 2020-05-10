@@ -1,19 +1,16 @@
 <template>
   <div>
-    <!-- 面包屑导航栏 -->
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-      <el-breadcrumb-item>用户列表</el-breadcrumb-item>
-    </el-breadcrumb>
-
     <!-- 卡片 -->
     <el-card>
       <!-- 搜索区域 -->
       <el-row :gutter="20">
         <el-col :span="8">
-          <el-input placeholder="请输入内容">
-            <el-button slot="append" icon="el-icon-search"></el-button>
+          <el-input placeholder="请输入内容" v-model="queryUserInfo.search">
+            <el-button
+              slot="append"
+              icon="el-icon-search"
+              @click="getSearchInput"
+            ></el-button>
           </el-input>
         </el-col>
         <el-col :span="4">
@@ -22,7 +19,7 @@
       </el-row>
 
       <!-- 表格 -->
-      <el-table :data="resUserInfo.userlist" border stripe style="width: 100%">
+      <el-table :data="resUserInfo.userlist" border stripe style="width: 100%;">
         <el-table-column type="index" width="50"></el-table-column>
         <el-table-column
           prop="username"
@@ -77,14 +74,15 @@
 
       <!-- 分页 -->
       <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="queryUserInfo.pagenum"
-      :page-sizes="[1, 2, 5, 10]"
-      :page-size="queryUserInfo.pagesize"
-      :layout="resUserInfo.layout"
-      :total="resUserInfo.total">
-    </el-pagination>
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="queryUserInfo.pagenum"
+        :page-sizes="[1, 2, 5, 10]"
+        :page-size="queryUserInfo.pagesize"
+        :layout="resUserInfo.layout"
+        :total="resUserInfo.total"
+      >
+      </el-pagination>
     </el-card>
   </div>
 </template>
@@ -99,7 +97,7 @@ export default {
         // 也代表了当前页，可以在分页功能中使用
         pagenum: 1,
         // 也代表当前每页显示多少条数据，可以在分页功能中使用
-        pagesize: 1
+        pagesize: 8
       },
       resUserInfo: {
         userlist: [],
@@ -112,6 +110,9 @@ export default {
     this.getUserList()
   },
   methods: {
+    getSearchInput () {
+      this.getUserList()
+    },
     async getUserList () {
       // get请求参数
       const { data: res } = await this.$http.get('/users/list.go', {
@@ -134,7 +135,6 @@ export default {
       this.queryUserInfo.pagenum = newPage
       this.getUserList()
     }
-
   }
 }
 </script>
