@@ -17,7 +17,9 @@
     "less-loader": "^5.0.0",
     "vue": "^2.5.2",
     "vue-moment": "^4.1.0",
-    "vue-router": "^3.0.1"
+    "vue-native-websocket": "^2.0.14",
+    "vue-router": "^3.0.1",
+    "vue-websocket": "^0.2.3"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

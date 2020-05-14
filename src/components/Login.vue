@@ -47,6 +47,9 @@ export default {
       }
     }
   },
+  created () {
+    this.keyupSubmit()
+  },
   methods: {
     //   重置
     resetLoginForm () {
@@ -59,7 +62,7 @@ export default {
         const { data: res } = await this.$http.post('/users/login.go', this.loginForm)
         if (res.code !== 200) {
           // 登录弹出框
-          this.$message({
+          return this.$message({
             message: '登录失败',
             type: 'error'
           })
@@ -68,15 +71,17 @@ export default {
           message: '恭喜你，登录成功',
           type: 'success'
         })
-
-        // 1. 登录成功后token保存到客户端的sessionStorage中
-        // 1.1  项目中出现了登录职位的其他API接口，必须登录之后才能访问
-        // 1.2  token保存在sessionStorage中
-        // 2. 通过编程式导航跳转到后台主页
-
         window.sessionStorage.setItem('token', 'token ' + res.data.access_token)
         this.$router.push('/home')
       })
+    },
+    keyupSubmit () {
+      document.onkeydown = e => {
+        let _key = window.event.keyCode
+        if (_key === 13) {
+          this.login()
+        }
+      }
     }
   }
 }

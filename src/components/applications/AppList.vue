@@ -190,6 +190,14 @@ export default {
     }
   },
   methods: {
+    keyupSubmit () {
+      document.onkeydown = e => {
+        let _key = window.event.keyCode
+        if (_key === 13) {
+          this.getSearchInput()
+        }
+      }
+    },
     showAddAppDialog () {
       this.dialogVisible = true
     },
@@ -258,6 +266,7 @@ export default {
   },
   created () {
     this.getAppList()
+    this.getSearchInput()
   }
 }
 </script>

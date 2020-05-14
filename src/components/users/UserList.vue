@@ -108,6 +108,7 @@ export default {
   },
   created () {
     this.getUserList()
+    this.keyupSubmit()
   },
   methods: {
     getSearchInput () {
@@ -134,6 +135,14 @@ export default {
     handleCurrentChange (newPage) {
       this.queryUserInfo.pagenum = newPage
       this.getUserList()
+    },
+    keyupSubmit () {
+      document.onkeydown = e => {
+        let _key = window.event.keyCode
+        if (_key === 13) {
+          this.getSearchInput()
+        }
+      }
     }
   }
 }

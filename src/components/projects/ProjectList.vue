@@ -151,8 +151,17 @@ export default {
   },
   created () {
     this.getProjectList()
+    this.keyupSubmit()
   },
   methods: {
+    keyupSubmit () {
+      document.onkeydown = e => {
+        let _key = window.event.keyCode
+        if (_key === 13) {
+          this.getSearchInput()
+        }
+      }
+    },
     getSearchInput () {
       this.getProjectList()
     },
